@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taggert W. Olson | Quantitative Political Science &amp; Data</title>
+<meta name="description" content="Portfolio of Taggert W. Olson: R, network analysis, regression, data pipelines, and research on political behavior.">
+<style>
+:root{--ink:#14213d;--muted:#5b6475;--line:#e3e6ec;--bg:#fafbfc;--card:#fff;--accent:#1f3864;--blue:#2f6fde;--gold:#c99a2e}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+header{background:var(--accent);color:#fff;padding:56px 0 40px}
+header h1{margin:0;font-size:40px;letter-spacing:-.5px}
+header p.tag{margin:8px 0 18px;font-size:19px;color:#dbe3f3}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:4px 12px;border-radius:999px;font-size:13px}
+nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:5}
+nav .wrap{display:flex;gap:22px;overflow-x:auto;padding-top:12px;padding-bottom:12px;font-size:14px;font-weight:600}
+nav a{color:var(--ink);white-space:nowrap}
+section{padding:48px 0;border-bottom:1px solid var(--line)}
+h2{font-size:26px;margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 24px;max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column}
+.card h3{margin:0 0 4px;font-size:18px}
+.card .meta{font-size:13px;color:var(--muted);margin-bottom:10px}
+.card ul{margin:0 0 14px;padding-left:18px}.card li{margin:4px 0}
+.card .links{margin-top:auto;display:flex;gap:14px;font-weight:600;font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.tags span{background:#eef2fa;color:var(--accent);font-size:12px;padding:2px 9px;border-radius:6px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:18px 0}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.stat b{display:block;font-size:22px}.stat span{font-size:12px;color:var(--muted)}
+#netbox{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+#net{display:block;width:100%;height:560px;cursor:grab}
+#tip{position:absolute;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;padding:5px 8px;border-radius:6px;display:none}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px;font-size:14px}
+.controls button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font:inherit;cursor:pointer}
+.controls button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.legend{font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 10px;vertical-align:-1px}
+#status{font-size:13px;color:var(--muted)}
+.resume h3{margin:22px 0 6px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.row b{font-weight:600}.row em{color:var(--muted);font-size:14px}
+.resume ul{margin:4px 0 10px;padding-left:18px}
+footer{padding:36px 0;color:var(--muted);font-size:14px}
+@media print{nav,#network,.controls{display:none}header{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Taggert W. Olson</h1>
+  <p class="tag">Quantitative political science · data pipelines · network analysis</p>
+  <div class="chips"><span class="chip">R</span><span class="chip">igraph</span><span class="chip">dplyr / ggplot2</span><span class="chip">Python</span><span class="chip">Web scraping</span><span class="chip">Regression</span><span class="chip">Google Apps Script</span><span class="chip">Mandarin</span></div>
+</div></header>
+<nav><div class="wrap"><a href="#about">About</a><a href="#projects">Projects</a><a href="#network">Interactive network</a><a href="#papers">Papers</a><a href="#resume">Resume</a><a href="#contact">Contact</a></div></nav>
+
+<section id="about"><div class="wrap">
+  <h2>About</h2>
+  <p class="lead">I'm a political science student at Cal Poly San Luis Obispo (Global Politics). I take messy, multi-source public data, audit it, build it into clean datasets and models, and explain the results to people who will never open a notebook. I've scraped and modeled a 1,575-person network, merged four federal and state sources into a county regression, built an operations data hub for a rideshare cooperative, and I'm building a sports prediction-market lab that tests itself nightly.</p>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2>Projects</h2>
+  <p class="lead">Code is public and reproducible where the data allow it.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>January 6 spatial network</h3>
+      <div class="meta">Cal Poly · Social Network Analysis · R</div>
+      <div class="tags"><span>web scraping</span><span>igraph</span><span>centrality</span><span>reproducible</span></div>
+      <ul>
+        <li>Scraped names, hometowns and charges for 1,575 defendants from NPR's public database with ParseHub.</li>
+        <li>Built a 50-mile proximity network (16,529 ties) and computed centrality, components and clustering.</li>
+        <li>Rebuilt scripts reproduce every published figure from anonymized data.</li>
+      </ul>
+      <div class="links"><a href="#network">Explore it</a><a href="https://github.com/tagwesley/jan6-spatial-network">Code</a><a href="https://github.com/tagwesley/jan6-spatial-network/blob/main/paper/paper.md">Paper</a></div>
+    </div>
+    <div class="card">
+      <h3>Crime, density and the vote in Oregon</h3>
+      <div class="meta">Cal Poly · Data Analysis · R</div>
+      <div class="tags"><span>data merging</span><span>OLS</span><span>interactions</span><span>robust SEs</span></div>
+      <ul>
+        <li>Merged FBI incident data, Census density, state election returns and BLS income for 36 counties.</li>
+        <li>Nested regressions showed the apparent crime effect is mostly an urban-density effect (R² 0.22 → 0.69).</li>
+      </ul>
+      <div class="links"><a href="https://github.com/tagwesley/oregon-crime-vote">Code</a><a href="https://github.com/tagwesley/oregon-crime-vote/blob/main/paper/paper.md">Paper</a></div>
+    </div>
+    <div class="card">
+      <h3>Kalshi Signal Lab</h3>
+      <div class="meta">Personal project · 2026–present · Python</div>
+      <div class="tags"><span>sports modeling</span><span>backtesting</span><span>sentiment scraping</span></div>
+      <ul>
+        <li>NBA pick model being upgraded with a pregame model, automatic game recording and nightly testing.</li>
+        <li>Designing a three-agent college-football system: statistical model, Reddit/forum sentiment scraper, and quarter-by-quarter simulator. Every game is treated as out-of-sample validation first.</li>
+      </ul>
+      <div class="links"><span style="color:var(--muted)">In progress · demo on request</span></div>
+    </div>
+    <div class="card">
+      <h3>Fare Co-op operations data hub</h3>
+      <div class="meta">Co-founder, Fare Co-op SLO · 2026–present</div>
+      <div class="tags"><span>Google Sheets</span><span>Apps Script</span><span>HubSpot</span><span>webhooks</span></div>
+      <ul>
+        <li>Built the chapter's data hub (driver index, dispatch, email queue, tasks) feeding a HubSpot CRM.</li>
+        <li>Driver portal with email-code sign-in, row-level access and approval-gated messaging.</li>
+      </ul>
+      <div class="links"><span style="color:var(--muted)">Code available on request</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="network"><div class="wrap">
+  <h2>Interactive: the January 6 proximity network</h2>
+  <p class="lead">Each dot is a defendant (anonymized). A line means two defendants' hometowns are within 50 miles. Drag to pan, scroll to zoom, hover for details. The data load live from the <a href="https://github.com/tagwesley/jan6-spatial-network">GitHub repo</a>.</p>
+  <div class="stats">
+    <div class="stat"><b>1,523</b><span>defendants with ≥1 tie</span></div>
+    <div class="stat"><b>16,529</b><span>proximity ties</span></div>
+    <div class="stat"><b>724</b><span>in largest component</span></div>
+    <div class="stat"><b>0.797</b><span>global clustering</span></div>
+    <div class="stat"><b>0.0143</b><span>density</span></div>
+  </div>
+  <div class="controls">
+    <button id="bGiant" class="on">Largest component</button><button id="bAll">All components</button>
+    <span class="legend"><i style="background:#1f3864"></i>defendant <i style="background:#c99a2e"></i>top-10 bridge (betweenness)</span>
+    <span id="status">Loading…</span>
+  </div>
+  <div id="netbox"><canvas id="net"></canvas><div id="tip"></div></div>
+</div></section>
+
+<section id="papers"><div class="wrap">
+  <h2>Papers</h2>
+  <p class="lead">Course papers, lightly edited in 2026. Each ends with a note on what changed.</p>
+  <div class="grid">
+    <div class="card"><h3>January 6, 2021: A Social Network Perspective</h3><div class="meta">Social Network Analysis · 2025</div><p>Shows that participation came from geographically bounded micro-movements, not one national network.</p><div class="links"><a href="https://github.com/tagwesley/jan6-spatial-network/blob/main/paper/paper.md">Read</a></div></div>
+    <div class="card"><h3>Crime Rates, Population Density, and Trump Support in Oregon Counties</h3><div class="meta">Data Analysis · 2025</div><p>Finds that the crime–vote association is largely explained by population density.</p><div class="links"><a href="https://github.com/tagwesley/oregon-crime-vote/blob/main/paper/paper.md">Read</a></div></div>
+  </div>
+</div></section>
+
+<section id="resume" class="resume"><div class="wrap">
+  <h2>Resume</h2>
+  <h3>Experience</h3>
+  <div class="row"><b>Co-Founder &amp; Local President, Fare Co-op San Luis Obispo</b><em>2026–present</em></div>
+  <ul><li>Launched the local chapter of a driver-owned rideshare cooperative; recruit and onboard drivers and riders; report weekly funnel metrics to national leadership.</li></ul>
+  <div class="row"><b>Mandarin Teacher, The Odyssey Preparatory Academy</b><em>Buckeye, AZ · Aug 2023–Aug 2024</em></div>
+  <ul><li>Planned and taught Mandarin classes, turning complex material into clear, structured lessons.</li></ul>
+  <div class="row"><b>Additional</b><em></em></div>
+  <ul><li>Target (2019–2023, progressive responsibility); Sidecar and The Kettle Black (hospitality, 2025–2026); teaching and support work in Ghana and Haiti with IwilGO.</li></ul>
+  <h3>Education</h3>
+  <div class="row"><b>California Polytechnic State University, San Luis Obispo</b><em>B.A. in progress</em></div>
+  <ul><li>Political Science, Global Politics concentration. Coursework: Data Analysis in R, Social Network Analysis, Research Design.</li></ul>
+  <div class="row"><b>Allan Hancock College</b><em>May 2022</em></div>
+  <ul><li>A.A.-T., Political Science. GPA 3.72.</li></ul>
+  <h3>Athletics &amp; coaching</h3>
+  <ul><li>Coach: varsity and JV girls basketball; 8th-grade boys basketball.</li><li>Basketball (7 years); state cross-country captain; high-school golf captain (4 years).</li></ul>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <h2>Contact</h2>
+  <p class="lead">San Luis Obispo, CA · open to relocating · <a href="mailto:tolson01@calpoly.edu">tolson01@calpoly.edu</a> · <a href="https://github.com/tagwesley">github.com/tagwesley</a></p>
+</div></section>
+<footer><div class="wrap">© 2026 Taggert W. Olson</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+(async function(){
+  const status=document.getElementById('status');
+  const base='https://raw.githubusercontent.com/tagwesley/jan6-spatial-network/main/data/';
+  let sizesTxt, adjTxt;
+  try{
+    [sizesTxt,adjTxt]=await Promise.all(['group_sizes.txt','group_adjacency.txt'].map(f=>fetch(base+f).then(r=>{if(!r.ok)throw 0;return r.text()})));
+  }catch(e){status.textContent='Could not load data.';return;}
+  // Rebuild nodes and edges from location groups
+  const sizes=sizesTxt.trim().split('\n').slice(1).map(Number);
+  const start=[];let n=0;sizes.forEach(s=>{start.push(n);n+=s});
+  const ids=g=>Array.from({length:sizes[g]},(_,k)=>start[g]+k);
+  const E=[];
+  sizes.forEach((s,g)=>{const m=ids(g);for(let i=0;i<m.length;i++)for(let j=i+1;j<m.length;j++)E.push([m[i],m[j]])});
+  adjTxt.trim().split('\n').slice(1).forEach(line=>{const [a,b]=line.split(':');if(!b)return;const g=+a-1;b.split(' ').forEach(o=>{const h=g+(+o);for(const u of ids(g))for(const v of ids(h))E.push([u,v])})});
+  const deg=new Array(n).fill(0);E.forEach(([u,v])=>{deg[u]++;deg[v]++});
+  // Components
+  const par=[...Array(n).keys()];const f=x=>{while(par[x]!==x){par[x]=par[par[x]];x=par[x]}return x};
+  E.forEach(([u,v])=>{par[f(u)]=f(v)});
+  const csize={};for(let i=0;i<n;i++){const r=f(i);csize[r]=(csize[r]||0)+1}
+  const giantRoot=+Object.keys(csize).sort((a,b)=>csize[b]-csize[a])[0];
+  const lab=i=>'P'+String(i+1).padStart(4,'0');
+  const bridges=new Set(['P1305','P1076','P0857','P1479','P1292','P1295','P1080','P0225','P0107','P0782']);
+  status.textContent=n.toLocaleString()+' defendants · '+E.length.toLocaleString()+' ties';
+
+  const canvas=document.getElementById('net'),ctx=canvas.getContext('2d'),tip=document.getElementById('tip');
+  let W,H,dpr=window.devicePixelRatio||1,transform=d3.zoomIdentity,nodes,links,sim;
+  function size(){W=canvas.clientWidth;H=canvas.clientHeight;canvas.width=W*dpr;canvas.height=H*dpr;}
+  size();addEventListener('resize',()=>{size();draw()});
+
+  function build(giantOnly){
+    if(sim)sim.stop();
+    const keep=i=>!giantOnly||f(i)===f(giantRoot);
+    const idx=new Map();nodes=[];
+    for(let i=0;i<n;i++)if(keep(i)){idx.set(i,nodes.length);nodes.push({i,id:lab(i),deg:deg[i],comp:csize[f(i)],bridge:bridges.has(lab(i))})}
+    links=E.filter(([u,v])=>idx.has(u)&&idx.has(v)).map(([u,v])=>({source:idx.get(u),target:idx.get(v)}));
+    sim=d3.forceSimulation(nodes)
+      .force('link',d3.forceLink(links).distance(8).strength(0.15))
+      .force('charge',d3.forceManyBody().strength(-6).distanceMax(120))
+      .force('x',d3.forceX(0).strength(giantOnly?0.01:0.04)).force('y',d3.forceY(0).strength(giantOnly?0.01:0.04))
+      .alphaDecay(0.03).on('tick',draw);
+    transform=d3.zoomIdentity.translate(W/2,H/2).scale(giantOnly?0.9:0.6);
+    d3.select(canvas).call(zoom.transform,transform);
+  }
+  function draw(){
+    if(!nodes)return;
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+    ctx.save();ctx.translate(transform.x,transform.y);ctx.scale(transform.k,transform.k);
+    ctx.strokeStyle='rgba(120,130,150,0.12)';ctx.lineWidth=0.5/transform.k;ctx.beginPath();
+    for(const l of links){ctx.moveTo(l.source.x,l.source.y);ctx.lineTo(l.target.x,l.target.y)}ctx.stroke();
+    for(const d of nodes){ctx.beginPath();const r=d.bridge?4:1.2+Math.sqrt(d.deg)/3;ctx.arc(d.x,d.y,r,0,7);ctx.fillStyle=d.bridge?'#c99a2e':'rgba(31,56,100,0.75)';ctx.fill()}
+    ctx.restore();
+  }
+  const zoom=d3.zoom().scaleExtent([0.1,8]).on('zoom',e=>{transform=e.transform;draw()});
+  d3.select(canvas).call(zoom);
+  canvas.addEventListener('mousemove',e=>{
+    if(!nodes)return;const r=canvas.getBoundingClientRect();const [x,y]=transform.invert([e.clientX-r.left,e.clientY-r.top]);
+    let best=null,bd=(8/transform.k)**2;for(const d of nodes){const q=(d.x-x)**2+(d.y-y)**2;if(q<bd){bd=q;best=d}}
+    if(best){tip.style.display='block';tip.style.left=(e.clientX-r.left+12)+'px';tip.style.top=(e.clientY-r.top+12)+'px';tip.textContent=best.id+' · '+best.deg+' ties · component of '+best.comp+(best.bridge?' · top bridge':'')}else tip.style.display='none';
+  });
+  canvas.addEventListener('mouseleave',()=>tip.style.display='none');
+  const bG=document.getElementById('bGiant'),bA=document.getElementById('bAll');
+  bG.onclick=()=>{bG.classList.add('on');bA.classList.remove('on');build(true)};
+  bA.onclick=()=>{bA.classList.add('on');bG.classList.remove('on');build(false)};
+  build(true);
+})();
+</script>
+</body>
+</html>
